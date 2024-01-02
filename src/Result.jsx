@@ -19,7 +19,7 @@ function Result({chosen, setOgLoading, setScore, score}) {
       if(num===1 && chosen==="rock"){
         setWon('draw')
         setComp('rock')
-        console.log(num)
+        setScore(score)
       }else if(num===1 && chosen==="paper"){
         setWon(true)
         setComp('rock')
@@ -41,7 +41,7 @@ function Result({chosen, setOgLoading, setScore, score}) {
       }else if(num===2 && chosen==="paper"){
         setWon('draw')
         setComp('paper')
-        console.log(num)
+        setScore(score)
       }else if(num===2 && chosen==="scissors"){
         setWon(true)
         setComp('paper')
@@ -61,11 +61,29 @@ function Result({chosen, setOgLoading, setScore, score}) {
       }else if(num===3 && chosen==="scissors"){
         setWon('draw')
         setComp('scissors')
-        console.log(num)
+        setScore(score)
+      }
+
+      /*extra, for bug <fixes></fixes>*/
+      else if(num===0 && chosen==="rock"){
+        setWon('draw')
+        setComp('rock')
+        setScore(score)
+      }else if(num===0 && chosen==="paper"){
+        setWon(true)
+        setComp('rock')
+        setScore(score+1)
+      }else if(num===0 && chosen==="scissors"){
+        setComp('rock')
+        setWon(false)
+        if(score>0){
+          setScore(score-1)
+        }
       }
     }
 
     useEffect(()=>{
+  
       handleResults()
     }, [])
 
@@ -118,7 +136,7 @@ function Result({chosen, setOgLoading, setScore, score}) {
       <div className="result">
       <div className="first">
             <span>YOU PICKED</span>
-            <img src={icon()}  alt="chosen" className={chosen==='rock'?'rock':chosen==='paper'?'paper':'scissors'}/>
+            <img  src={icon()}  alt="chosen" className={chosen==='rock'?'rock':chosen==='paper'?'paper':'scissors'}/>
         </div>
          <div className="second">
             <h2>{won===true?"YOU WIN":won==='draw'?"DRAW!":won===false?"YOU LOSE":'idek'}</h2>
