@@ -44,7 +44,7 @@ Users should be able to:
 ## Author
 
 - Website - [Uzaymah Adeyemi Oyedeji](https://uzaymah.vercel.app)
-- Frontend Mentor - [@AnosVoldigoad999](https://www.frontendmentor.io/profile/@AnosVoldigoad999)
-- Twitter - [@Anos_Voldigoad4](https://www.twitter.com/@Anos_Voldigoad4)
+- Frontend Mentor - [@AnosVoldigoad999](https://www.frontendmentor.io/profile/AnosVoldigoad999)
+- Twitter - [@Anos_Voldigoad4](https://www.twitter.com/Anos_Voldigoad4)
 
 
