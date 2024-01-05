@@ -1,15 +1,24 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Result from './Result'
 import './App.css'
 function App() {
 
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(()=>{
+    const gottenScore = JSON.parse(localStorage.getItem('score'))
+    if(!gottenScore){
+      return 0
+    }else{
+      return gottenScore
+    }
+  })
   const [showModal, setShowModal] =useState(false) 
   const [chosen, setChosen] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-
+useEffect(()=>{
+  localStorage.setItem('score', JSON.stringify(score))
+}, [score])
   
   return (
 <>

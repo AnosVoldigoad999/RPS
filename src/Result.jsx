@@ -15,57 +15,9 @@ function Result({chosen, setOgLoading, setScore, score}) {
     const[comp, setComp] = useState('')
     function handleResults(){
       const num = Math.floor(Math.random()*3)
+      console.log(num)
       //rock
-      if(num===1 && chosen==="rock"){
-        setWon('draw')
-        setComp('rock')
-        setScore(score)
-      }else if(num===1 && chosen==="paper"){
-        setWon(true)
-        setComp('rock')
-        setScore(score+1)
-      }else if(num===1 && chosen==="scissors"){
-        setComp('rock')
-        setWon(false)
-        if(score>0){
-          setScore(score-1)
-        }
-      }
-      //paper
-      else if(num===2 && chosen==="rock"){
-        setComp('paper')
-        setWon(false)
-        if(score>0){
-          setScore(score-1)
-        }
-      }else if(num===2 && chosen==="paper"){
-        setWon('draw')
-        setComp('paper')
-        setScore(score)
-      }else if(num===2 && chosen==="scissors"){
-        setWon(true)
-        setComp('paper')
-        setScore(score+1)
-      }
-      //scissors
-      else if(num===3 && chosen==="rock"){
-        setWon(true)
-        setComp('scissors')
-        setScore(score+1)
-      }else if(num===3 && chosen==="paper"){
-        setComp('scissors')
-        setWon(false)
-        if(score>0){
-          setScore(score-1)
-        }
-      }else if(num===3 && chosen==="scissors"){
-        setWon('draw')
-        setComp('scissors')
-        setScore(score)
-      }
-
-      /*extra, for bug <fixes></fixes>*/
-      else if(num===0 && chosen==="rock"){
+      if(num===0 && chosen==="rock"){
         setWon('draw')
         setComp('rock')
         setScore(score)
@@ -80,6 +32,41 @@ function Result({chosen, setOgLoading, setScore, score}) {
           setScore(score-1)
         }
       }
+      //paper
+      else if(num===1 && chosen==="rock"){
+        setComp('paper')
+        setWon(false)
+        if(score>0){
+          setScore(score-1)
+        }
+      }else if(num===1 && chosen==="paper"){
+        setWon('draw')
+        setComp('paper')
+        setScore(score)
+      }else if(num===1 && chosen==="scissors"){
+        setWon(true)
+        setComp('paper')
+        setScore(score+1)
+      }
+      //scissors
+      else if(num===2 && chosen==="rock"){
+        setWon(true)
+        setComp('scissors')
+        setScore(score+1)
+      }else if(num===2 && chosen==="paper"){
+        setComp('scissors')
+        setWon(false)
+        if(score>0){
+          setScore(score-1)
+        }
+      }else if(num===2 && chosen==="scissors"){
+        setWon('draw')
+        setComp('scissors')
+        setScore(score)
+      }
+
+      /*extra, for bug fixes*/
+      
     }
 
     useEffect(()=>{
@@ -136,7 +123,7 @@ function Result({chosen, setOgLoading, setScore, score}) {
       <div className="result">
       <div className="first">
             <span>YOU PICKED</span>
-            <img  src={icon()}  alt="chosen" className={chosen==='rock'?'rock':chosen==='paper'?'paper':'scissors'}/>
+            <img style={{boxShadow: `${won===true?"0px 0px 50px hsla(0, 0%, 100%, 0.5)":''}`}}  src={icon()}  alt="chosen" className={chosen==='rock'?'rock':chosen==='paper'?'paper':'scissors'}/>
         </div>
          <div className="second">
             <h2>{won===true?"YOU WIN":won==='draw'?"DRAW!":won===false?"YOU LOSE":'idek'}</h2>
@@ -144,7 +131,7 @@ function Result({chosen, setOgLoading, setScore, score}) {
         </div>
         <div className="third">
             <span>THE HOUSE PICKED</span>
-           <img src={comp==='rock'?"/images/icon-rock.svg":comp==='paper'?"/images/icon-paper.svg":comp==='scissors'?"/images/icon-scissors.svg":''} alt="chosen" className={comp} />
+           <img style={{boxShadow: `${won===false?"0px 0px 50px hsla(0, 0%, 100%, 0.5)":''}`}} src={comp==='rock'?"/images/icon-rock.svg":comp==='paper'?"/images/icon-paper.svg":comp==='scissors'?"/images/icon-scissors.svg":''} alt="chosen" className={comp} />
             {/*<div className='load' />*/}
         </div>
       </div>
